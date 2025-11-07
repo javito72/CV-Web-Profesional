@@ -1,0 +1,636 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.toolbar {
+    max-width: 900px;
+    margin: 0 auto 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+button {
+    background: white;
+    border: 2px solid #667eea;
+    color: #667eea;
+    padding: 12px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+button:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.loader {
+    display: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+button:disabled .loader {
+    display: inline-block;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.profile-photo {
+    flex-shrink: 0;
+}
+
+.avatar-placeholder {
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5em;
+    font-weight: 700;
+    color: white;
+    border: 4px solid white;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.profile-photo img {
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    border: 4px solid white;
+    object-fit: cover;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    background: #f0f0f0;
+    /* Asegurar la transición para el efecto hover */
+    transition: all 0.3s ease-in-out;
+}
+
+/* EFECTO HOVER EN FOTO DE PERFIL */
+.profile-photo img:hover {
+    transform: scale(1.05); /* Ligeramente más grande */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
+}
+
+.header-content {
+    flex: 1;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.header p {
+    font-size: 1.2em;
+    opacity: 0.95;
+    margin-bottom: 20px;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    font-size: 0.95em;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.contact-item a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s;
+    /* Remover flex/gap de aquí, para que mail/whatsapp se alineen mejor */
+}
+
+/* EFECTO HOVER EN LINKS DE CONTACTO */
+.contact-item a:hover {
+    color: white; /* Asegurar que el color sea blanco */
+    opacity: 1;
+    text-decoration: none;
+    transform: translateX(3px); /* Pequeño desplazamiento a la derecha */
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); /* Efecto de brillo */
+}
+
+
+.content {
+    padding: 40px;
+}
+
+.section {
+    margin-bottom: 30px;
+    /* Se eliminará la animación en modo impresión */
+    animation: fadeIn 0.6s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section:nth-child(1) { animation-delay: 0s; }
+.section:nth-child(2) { animation-delay: 0.1s; }
+.section:nth-child(3) { animation-delay: 0.2s; }
+.section:nth-child(4) { animation-delay: 0.3s; }
+.section:nth-child(5) { animation-delay: 0.4s; }
+.section:nth-child(6) { animation-delay: 0.5s; }
+.section:nth-child(7) { animation-delay: 0.6s; } /* Ajuste de retraso para la nueva sección */
+
+
+.section-title {
+    font-size: 1.4em;
+    color: #667eea;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid #667eea;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer; /* Añadir cursor para indicar interactividad */
+    transition: all 0.3s ease;
+}
+
+/* EFECTO HOVER EN TÍTULOS DE SECCIÓN */
+.section-title:hover {
+    color: #4b5be2; /* Un azul un poco más oscuro */
+    transform: translateY(-2px);
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-text {
+    line-height: 1.7;
+    color: #333;
+    text-align: justify;
+    font-size: 0.95em;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.skill-category {
+    background: #f8f9fa;
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.skill-category h4 {
+    color: #667eea;
+    margin-bottom: 8px;
+    font-size: 1em;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.tag {
+    background: white;
+    color: #667eea;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.85em;
+    border: 1px solid #667eea;
+    transition: all 0.3s;
+}
+
+.tag:hover {
+    background: #667eea;
+    color: white;
+    transform: scale(1.05);
+}
+
+.experience-item {
+    margin-bottom: 18px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border-left: 4px solid #764ba2;
+    transition: all 0.3s;
+}
+
+.experience-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+}
+
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 10px;
+}
+
+.exp-title {
+    font-weight: 700;
+    font-size: 1em;
+    color: #333;
+}
+
+.exp-date {
+    color: #764ba2;
+    font-size: 0.9em;
+    font-weight: 600;
+    text-align: right;
+}
+
+.exp-company {
+    color: #667eea;
+    font-size: 0.9em;
+    margin-bottom: 6px;
+}
+
+.exp-description {
+    color: #555;
+    line-height: 1.5;
+    font-size: 0.9em;
+}
+
+.education-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border-left: 4px solid #667eea;
+}
+
+.edu-title {
+    font-weight: 700;
+    font-size: 1em;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.edu-institution {
+    color: #764ba2;
+    font-size: 0.9em;
+    margin-bottom: 4px;
+}
+
+.edu-date {
+    color: #667eea;
+    font-size: 0.85em;
+    margin-bottom: 8px;
+}
+
+.grade-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+    font-size: 0.85em;
+}
+
+.grade-item {
+    background: white;
+    padding: 8px;
+    border-radius: 4px;
+    border-left: 2px solid #667eea;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.course-item {
+    background: white;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    border-left: 3px solid #667eea;
+    font-size: 0.9em;
+    transition: all 0.3s;
+}
+
+.course-item:hover {
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+    transform: translateY(-3px);
+}
+
+.course-name {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 3px;
+}
+
+.course-platform {
+    color: #764ba2;
+    font-size: 0.8em;
+    margin-bottom: 3px;
+}
+
+.course-status {
+    color: #667eea;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #667eea;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    animation: slideIn 0.3s ease;
+    z-index: 1000;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        padding: 30px 20px;
+    }
+
+    .header h1 {
+        font-size: 2em;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .skills-grid,
+    .courses-grid,
+    .grade-list {
+        grid-template-columns: 1fr;
+    }
+
+    .exp-header {
+        flex-direction: column;
+    }
+
+    .section-title {
+        font-size: 1.2em;
+    }
+
+    .toolbar {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+/* ESTILOS PARA IMPRESIÓN Y PDF - AJUSTADOS PARA MEJOR VISUALIZACIÓN EN IMPRESIÓN ESTÁNDAR */
+@media print {
+    /* 1. Desactivar animaciones y efectos visuales que puedan causar problemas */
+    .section {
+        animation: none !important; /* Desactivar animación de fadeIn */
+        opacity: 1 !important; /* Asegurar que sean visibles */
+    }
+
+    * {
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+    
+    /* 2. Desactivar el hover para impresión */
+    .profile-photo img:hover,
+    .contact-item a:hover,
+    .section-title:hover {
+        transform: none !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+        color: #667eea !important; /* Volver al color original */
+    }
+
+
+    /* 3. Configuración básica del documento */
+    html, body {
+        /* Eliminar el uso de !important en el 100% de width para que el navegador controle el área de impresión */
+        width: auto;
+        min-height: auto;
+        margin: 0;
+        padding: 0;
+        background: white !important;
+    }
+
+    body {
+        background: white;
+        padding: 0;
+        /* Asegurar que el contenido pueda fluir */
+        overflow: visible !important;
+    }
+
+    .toolbar {
+        display: none !important;
+    }
+
+    .container {
+        box-shadow: none !important;
+        border-radius: 0;
+        /* Permitir que el max-width se ajuste al área de impresión */
+        max-width: none !important;
+        /* Reducir el margen en impresión */
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100%;
+    }
+
+    /* 4. Ajustes de contenido y paginación */
+    .header {
+        padding: 20px !important;
+        page-break-after: avoid;
+        page-break-inside: avoid;
+        margin: 0 !important;
+    }
+
+    .content {
+        /* Reducir el padding para ahorrar espacio, pero mantenerlo */
+        padding: 15px 20px !important;
+        margin: 0 !important;
+    }
+
+    .section {
+        page-break-inside: avoid !important;
+        margin-bottom: 10px !important;
+    }
+    
+    /* El resto de estilos se mantienen ya que ajustan el tamaño de fuente, etc. */
+
+    .avatar-placeholder {
+        width: 100px !important;
+        height: 100px !important;
+        font-size: 2.5em !important;
+    }
+
+    .profile-photo img {
+        width: 100px !important;
+        height: 100px !important;
+    }
+
+    .section-title {
+        page-break-after: avoid !important;
+        font-size: 1.1em;
+        margin-bottom: 10px !important;
+        /* Quitar cursor y resetear estilos de transición */
+        cursor: auto !important;
+        transition: none !important;
+    }
+
+    .experience-item,
+    .education-item,
+    .course-item {
+        page-break-inside: avoid !important;
+        box-shadow: none !important;
+        margin-bottom: 8px !important;
+    }
+
+    .profile-text {
+        font-size: 0.85em;
+        line-height: 1.4;
+        margin-bottom: 8px !important;
+    }
+
+    .skill-category {
+        margin-bottom: 6px !important;
+    }
+
+    .tag {
+        font-size: 0.7em;
+        padding: 2px 6px;
+        margin-bottom: 2px;
+    }
+
+    .contact-info {
+        gap: 6px;
+        font-size: 0.85em;
+    }
+
+    .exp-description,
+    .edu-date,
+    .grade-item,
+    .course-platform {
+        font-size: 0.8em;
+    }
+
+    h1 {
+        font-size: 1.8em !important;
+        margin-bottom: 2px !important;
+    }
+
+    h2 {
+        font-size: 1em !important;
+    }
+
+    h4 {
+        font-size: 0.85em !important;
+    }
+
+    .skills-grid,
+    .courses-grid {
+        grid-template-columns: 1fr !important;
+        gap: 4px !important;
+    }
+
+    .grade-list {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 4px !important;
+    }
+
+    /* Evita que las imágenes rompan el diseño */
+    img {
+        max-width: 100%;
+        height: auto;
+        page-break-inside: avoid;
+    }
+
+    /* Asegura que los elementos no se corten */
+    .exp-header,
+    .profile-text {
+        page-break-inside: avoid;
+    }
+}
