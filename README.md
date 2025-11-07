@@ -23,10 +23,9 @@ Puedes ver el currículum interactivo directamente. Si activas **GitHub Pages** 
 
 | Enlace | Descripción |
 | :--- | :--- |
-| **[Ver CV Interactivo](URL_DE_GITHUB_PAGES_AQUI)** | Visualización completa con efectos, impresión y funcionalidad. |
-| **[Ver Código Fuente](cv_index.html)** | Enlace directo al archivo principal del proyecto. |
+| **[Ver CV Interactivo](https://javito72.github.io/CV-Web-Profesional/)** | Visualización completa con efectos, impresión y funcionalidad. |
+| **[Ver Código Fuente](index.html)** | Enlace directo al archivo principal del proyecto. |
 
-*(Reemplaza `URL_DE_GITHUB_PAGES_AQUI` por el enlace que obtendrás al configurar GitHub Pages, como por ejemplo: `https://[TuUsuario].github.io/CV-Web-Profesional/cv_index.html`)*
 
 ## 📧 Contacto
 
