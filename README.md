@@ -14,12 +14,11 @@ Me especializo en el ciclo completo de desarrollo, desde la arquitectura de base
 | :--- | :--- |
 | **Lenguajes** | Java, JavaScript, Python, SQL, HTML5, CSS3 |
 | **Arquitectura** | Responsive Design, MVC, REST APIs, CRUD |
-| **Bases de Datos** | MySQL, SQLite |
-| **Herramientas** | Git/GitHub, VS Code, Scrum, Kanban |
+| **Bases de Datos** | MySQL, SQLite, MongoDB |
+| **Herramientas** | Git/GitHub, Visual Studio Code, Scrum, Kanban |
 
 ## 🚀 Acceso al CV
 
-Puedes ver el currículum interactivo directamente. Si activas **GitHub Pages** en este repositorio, podrás usar un enlace directo aquí:
 
 | Enlace | Descripción |
 | :--- | :--- |
